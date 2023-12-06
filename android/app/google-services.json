@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "274912070764",
+    "project_id": "healthso",
+    "storage_bucket": "healthso.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274912070764:android:66bddd92b2989abb48dc49",
+        "android_client_info": {
+          "package_name": "com.example.healthso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274912070764-9ld5nqdmr72d6tjcog6l6vlliual4s5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyvddxRdAiTRRteSRABuJzSYb_JTrFeZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274912070764-9ld5nqdmr72d6tjcog6l6vlliual4s5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

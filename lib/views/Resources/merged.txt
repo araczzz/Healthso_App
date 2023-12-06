@@ -1,0 +1,418 @@
+Date: 2023-08-15 11:22:45
+
+Root File Path: d:\CODING\git\health_app\lib\views\Resources
+Directory Tree:
+- Resources/
+    - Appointments/
+        - appointment_manager.dart
+        - appointment_model.dart
+        - appointment_xml_handler.dart
+    - Doctors/
+        - doctor_data.dart
+        - doctor_model.dart
+    - Patients/
+        - patient.dart
+
+
+--- Appointments/appointment_manager.dart ---
+import 'package:healthso/views/Resources/Appointments/appointment_xml_handler.dart';
+import 'package:healthso/views/Resources/Doctors/doctor_model.dart';
+import 'package:xml/xml.dart' as xml;
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:healthso/views/Resources/Patients/patient.dart';
+
+class AppointmentManager {
+  static Future<void> saveAppointment({
+    required Doctor doctor,
+    required DateTime selectedDateTime,
+  }) async {
+    final currentPatient = Patient.currentPatient;
+    if (currentPatient != null) {
+      final selectedDoctorId = doctor.docId;
+
+      final appointmentElement = xml.XmlElement(
+        xml.XmlName('appointment'),
+        [
+          xml.XmlAttribute(
+              xml.XmlName('doctorId'), selectedDoctorId.toString()),
+          xml.XmlAttribute(
+              xml.XmlName('patientId'), currentPatient.id.toString()),
+          xml.XmlAttribute(
+              xml.XmlName('dateTime'), selectedDateTime.toString()),
+        ],
+        [],
+      );
+
+      await AppointmentXmlHandler.addAppointment(appointmentElement);
+
+      Fluttertoast.showToast(msg: 'Appointment booked successfully.');
+    } else {
+      Fluttertoast.showToast(msg: 'Patient information not available.');
+    }
+  }
+}
+
+
+--- Appointments/appointment_manager.dart ---
+import 'package:healthso/views/Resources/Appointments/appointment_xml_handler.dart';
+import 'package:healthso/views/Resources/Doctors/doctor_model.dart';
+import 'package:xml/xml.dart' as xml;
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:healthso/views/Resources/Patients/patient.dart';
+
+class AppointmentManager {
+  static Future<void> saveAppointment({
+    required Doctor doctor,
+    required DateTime selectedDateTime,
+  }) async {
+    final currentPatient = Patient.currentPatient;
+    if (currentPatient != null) {
+      final selectedDoctorId = doctor.docId;
+
+      final appointmentElement = xml.XmlElement(
+        xml.XmlName('appointment'),
+        [
+          xml.XmlAttribute(
+              xml.XmlName('doctorId'), selectedDoctorId.toString()),
+          xml.XmlAttribute(
+              xml.XmlName('patientId'), currentPatient.id.toString()),
+          xml.XmlAttribute(
+              xml.XmlName('dateTime'), selectedDateTime.toString()),
+        ],
+        [],
+      );
+
+      await AppointmentXmlHandler.addAppointment(appointmentElement);
+
+      Fluttertoast.showToast(msg: 'Appointment booked successfully.');
+    } else {
+      Fluttertoast.showToast(msg: 'Patient information not available.');
+    }
+  }
+}
+
+
+--- Appointments/appointment_model.dart ---
+class Appointment {
+  final int doctorId;
+  final int patientId;
+  final DateTime dateTime;
+
+  Appointment({
+    required this.doctorId,
+    required this.patientId,
+    required this.dateTime,
+  });
+}
+
+
+--- Appointments/appointment_model.dart ---
+class Appointment {
+  final int doctorId;
+  final int patientId;
+  final DateTime dateTime;
+
+  Appointment({
+    required this.doctorId,
+    required this.patientId,
+    required this.dateTime,
+  });
+}
+
+
+--- Appointments/appointment_xml_handler.dart ---
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:xml/xml.dart' as xml;
+
+class AppointmentXmlHandler {
+  static const _fileName = 'appointments.xml';
+
+  static Future<String> _getAppointmentsFilePath() async {
+    final appDocDir = await getApplicationDocumentsDirectory();
+    return '${appDocDir.path}/$_fileName';
+  }
+
+  static Future<xml.XmlDocument> _readAppointmentsXml() async {
+    final filePath = await _getAppointmentsFilePath();
+    final file = File(filePath);
+
+    if (await file.exists()) {
+      final xmlString = await file.readAsString();
+      return xml.XmlDocument.parse(xmlString);
+    } else {
+      return xml.XmlDocument.parse('<appointments></appointments>');
+    }
+  }
+
+  static Future<void> _writeAppointmentsXml(
+      xml.XmlDocument appointmentsXml) async {
+    final filePath = await _getAppointmentsFilePath();
+    final file = File(filePath);
+    await file.writeAsString(appointmentsXml.toXmlString(pretty: true));
+  }
+
+  static Future<void> addAppointment(xml.XmlElement appointmentElement) async {
+    final appointmentsXml = await _readAppointmentsXml();
+    appointmentsXml.root.children.add(appointmentElement);
+    await _writeAppointmentsXml(appointmentsXml);
+  }
+
+  static Future<List<xml.XmlElement>> getAppointments() async {
+    final appointmentsXml = await _readAppointmentsXml();
+    return appointmentsXml.findAllElements('appointment').toList();
+  }
+}
+
+
+--- Appointments/appointment_xml_handler.dart ---
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:xml/xml.dart' as xml;
+
+class AppointmentXmlHandler {
+  static const _fileName = 'appointments.xml';
+
+  static Future<String> _getAppointmentsFilePath() async {
+    final appDocDir = await getApplicationDocumentsDirectory();
+    return '${appDocDir.path}/$_fileName';
+  }
+
+  static Future<xml.XmlDocument> _readAppointmentsXml() async {
+    final filePath = await _getAppointmentsFilePath();
+    final file = File(filePath);
+
+    if (await file.exists()) {
+      final xmlString = await file.readAsString();
+      return xml.XmlDocument.parse(xmlString);
+    } else {
+      return xml.XmlDocument.parse('<appointments></appointments>');
+    }
+  }
+
+  static Future<void> _writeAppointmentsXml(
+      xml.XmlDocument appointmentsXml) async {
+    final filePath = await _getAppointmentsFilePath();
+    final file = File(filePath);
+    await file.writeAsString(appointmentsXml.toXmlString(pretty: true));
+  }
+
+  static Future<void> addAppointment(xml.XmlElement appointmentElement) async {
+    final appointmentsXml = await _readAppointmentsXml();
+    appointmentsXml.root.children.add(appointmentElement);
+    await _writeAppointmentsXml(appointmentsXml);
+  }
+
+  static Future<List<xml.XmlElement>> getAppointments() async {
+    final appointmentsXml = await _readAppointmentsXml();
+    return appointmentsXml.findAllElements('appointment').toList();
+  }
+}
+
+
+--- Doctors/doctor_data.dart ---
+import 'package:healthso/views/Resources/Doctors/doctor_model.dart';
+
+class DoctorData {
+  static final List<Doctor> doctors = [
+    Doctor(
+      docId: 1,
+      name: "John Wilson",
+      domain: "Cardiology",
+      distance: "1.0",
+      ratings: "4.0",
+      imagePath: 'assets/popularDoc/John.png',
+      bio:
+          'Dr. Carly Angel is the top most immunologists specialist \nin Crist Hospital in London, UK. She achieved several awards for her wonderful contribution.',
+      extendedBio: '',
+      hospitalName: 'Mars Hospital',
+      experienceYearsCount: '11',
+      patientCount: '658',
+      reviewsCount: '300',
+    ),
+    Doctor(
+      docId: 2,
+      name: "Alexa Johnson",
+      domain: "Heart Surgeon",
+      distance: "1.8",
+      ratings: "4.2",
+      imagePath: 'assets/popularDoc/Alexa.png',
+      bio: 'hjkdabsukjdbaujksdblksad',
+      extendedBio: '',
+      hospitalName: 'Mars Hospital',
+      experienceYearsCount: '11',
+      patientCount: '658',
+      reviewsCount: '300',
+    ),
+    // Add more doctors as needed
+  ];
+}
+
+
+--- Doctors/doctor_data.dart ---
+import 'package:healthso/views/Resources/Doctors/doctor_model.dart';
+
+class DoctorData {
+  static final List<Doctor> doctors = [
+    Doctor(
+      docId: 1,
+      name: "John Wilson",
+      domain: "Cardiology",
+      distance: "1.0",
+      ratings: "4.0",
+      imagePath: 'assets/popularDoc/John.png',
+      bio:
+          'Dr. Carly Angel is the top most immunologists specialist \nin Crist Hospital in London, UK. She achieved several awards for her wonderful contribution.',
+      extendedBio: '',
+      hospitalName: 'Mars Hospital',
+      experienceYearsCount: '11',
+      patientCount: '658',
+      reviewsCount: '300',
+    ),
+    Doctor(
+      docId: 2,
+      name: "Alexa Johnson",
+      domain: "Heart Surgeon",
+      distance: "1.8",
+      ratings: "4.2",
+      imagePath: 'assets/popularDoc/Alexa.png',
+      bio: 'hjkdabsukjdbaujksdblksad',
+      extendedBio: '',
+      hospitalName: 'Mars Hospital',
+      experienceYearsCount: '11',
+      patientCount: '658',
+      reviewsCount: '300',
+    ),
+    // Add more doctors as needed
+  ];
+}
+
+
+--- Doctors/doctor_model.dart ---
+class Doctor {
+  final int docId;
+  final String name;
+  final String domain;
+  final String distance;
+  final String ratings;
+  final String imagePath;
+  final String bio;
+  final String extendedBio;
+  final String hospitalName;
+  final String patientCount;
+  final String experienceYearsCount;
+  final String reviewsCount;
+
+  Doctor({
+    required this.docId,
+    required this.name,
+    required this.domain,
+    required this.distance,
+    required this.ratings,
+    required this.imagePath,
+    required this.bio,
+    required this.extendedBio,
+    required this.hospitalName,
+    required this.patientCount,
+    required this.experienceYearsCount,
+    required this.reviewsCount,
+  });
+}
+
+
+--- Doctors/doctor_model.dart ---
+class Doctor {
+  final int docId;
+  final String name;
+  final String domain;
+  final String distance;
+  final String ratings;
+  final String imagePath;
+  final String bio;
+  final String extendedBio;
+  final String hospitalName;
+  final String patientCount;
+  final String experienceYearsCount;
+  final String reviewsCount;
+
+  Doctor({
+    required this.docId,
+    required this.name,
+    required this.domain,
+    required this.distance,
+    required this.ratings,
+    required this.imagePath,
+    required this.bio,
+    required this.extendedBio,
+    required this.hospitalName,
+    required this.patientCount,
+    required this.experienceYearsCount,
+    required this.reviewsCount,
+  });
+}
+
+
+--- Patients/patient.dart ---
+import 'package:shared_preferences/shared_preferences.dart';
+
+class Patient {
+  static Patient? currentPatient;
+
+  final int id;
+  final String name;
+
+  Patient({
+    required this.id,
+    required this.name,
+  });
+
+  Future<void> save() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('patient_id', id);
+    await prefs.setString('patient_name', name);
+  }
+
+  static Future<Patient?> load() async {
+    final prefs = await SharedPreferences.getInstance();
+    final patientId = prefs.getInt('patient_id');
+    final patientName = prefs.getString('patient_name');
+    if (patientId != null && patientName != null) {
+      return Patient(id: patientId, name: patientName);
+    }
+    return null;
+  }
+}
+
+
+--- Patients/patient.dart ---
+import 'package:shared_preferences/shared_preferences.dart';
+
+class Patient {
+  static Patient? currentPatient;
+
+  final int id;
+  final String name;
+
+  Patient({
+    required this.id,
+    required this.name,
+  });
+
+  Future<void> save() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('patient_id', id);
+    await prefs.setString('patient_name', name);
+  }
+
+  static Future<Patient?> load() async {
+    final prefs = await SharedPreferences.getInstance();
+    final patientId = prefs.getInt('patient_id');
+    final patientName = prefs.getString('patient_name');
+    if (patientId != null && patientName != null) {
+      return Patient(id: patientId, name: patientName);
+    }
+    return null;
+  }
+}
+
+
