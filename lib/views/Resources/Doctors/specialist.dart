@@ -16,7 +16,7 @@ class SpecialistPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -63,13 +63,31 @@ class SpecialistPage extends StatelessWidget {
             Column(
               children: [
                 _largeContainer(
-                    'assets/Doctor.png', 'Heading 1', 'Subheading 1'),
-                Container(
-                  color: const Color.fromARGB(255, 197, 194, 194), // Grey color
-                  height: 10, // Adjust the height as needed
+                  'assets/Doctor.png',
+                  doctorName: 'Dr Sudha',
+                  doctorLastName: 'Balasubramnian',
+                  specialization: 'General Physician',
+                  experience: '28 Years experience',
+                  location: 'Nanganallur • Diha Clinic • ~3.6km',
+                  nextAvailable: 'NEXT AVAILABLE AT',
+                  appointmentTime: '05:30 PM today',
                 ),
+                const SizedBox(height: 10),
+                Container(
+                  height: 10, // Gray gap height
+                  color: const Color.fromARGB(255, 159, 158, 158),
+                ),
+                const SizedBox(height: 10),
                 _largeContainer(
-                    'assets/Doctor.png', 'Heading 2', 'Subheading 2'),
+                  'assets/Doctor.png',
+                  doctorName: 'Dr Sudha',
+                  doctorLastName: 'Balasubramnian',
+                  specialization: 'General Physician',
+                  experience: '28 Years experience',
+                  location: 'Nanganallur • Diha Clinic • ~3.6km',
+                  nextAvailable: 'NEXT AVAILABLE AT',
+                  appointmentTime: '05:30 PM today',
+                ),
               ],
             ),
             const SizedBox(height: 10),
@@ -101,69 +119,121 @@ class SpecialistPage extends StatelessWidget {
     );
   }
 
-  Widget _largeContainer(String imagePath, String heading, String subheading) {
+  Widget _largeContainer(
+    String imagePath, {
+    required String doctorName,
+    required String doctorLastName,
+    required String specialization,
+    required String experience,
+    required String location,
+    required String nextAvailable,
+    required String appointmentTime,
+  }) {
     return Container(
       decoration: const BoxDecoration(
-          //Add if needed
-          ),
+        // Add if needed
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            imagePath,
-            width: 80,
-            height: 80,
+          Row(
+            children: [
+              Image.asset(
+                imagePath,
+                width: 80,
+                height: 80,
+              ),
+              const SizedBox(width: 50),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      doctorName,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    if (doctorLastName.isNotEmpty)
+                      Text(
+                        doctorLastName,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    Text(
+                      specialization,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 78, 71, 71),
+                      ),
+                    ),
+                    Text(
+                      experience,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 78, 71, 71),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Spacer(),
+            ],
           ),
+          const SizedBox(height: 4), // Add spacing between the image and text
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  height: 1,
+                  color: const Color.fromARGB(255, 159, 158, 158), // Grey line
+                ),
                 Text(
-                  heading,
+                  location,
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.normal, // No longer bold
                   ),
                 ),
-                Text(subheading),
+                const SizedBox(height: 4), // Add space
+                const Row(
+                  children: [
+                    Text(' ~400 Consultation Fees'),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      nextAvailable,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 80, 46, 204),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.home),
+                        const SizedBox(width: 3),
+                        Text(appointmentTime),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
-          Container(
-            height: 1,
-            color: const Color.fromARGB(255, 159, 158, 158),
-          ),
-          Row(
-            children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Text 1'),
-                  Text('Text 2'),
-                  Text('Text 3'),
-                ],
-              ),
-              const SizedBox(width: 50),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Text 4'),
-                  Text('Text 5'),
-                  Text('Text 6'),
-                ],
-              ),
-              const SizedBox(width: 90),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle button click here
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: const Color.fromARGB(255, 80, 46, 204),
-                ),
-                child: const Text('Book Clinic Visit'),
-              ),
-            ],
+          const SizedBox(height: 4), // Add spacing between the text and button
+          ElevatedButton(
+            onPressed: () {
+              // Handle button click here
+            },
+            style: ElevatedButton.styleFrom(
+              primary: const Color.fromARGB(255, 80, 46, 204),
+            ),
+            child: const Text('Book Clinic Visit'),
           ),
         ],
       ),

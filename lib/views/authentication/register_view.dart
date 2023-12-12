@@ -80,12 +80,12 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          ColorConstants.primaryColour, // Background color is now #4F2ECC
+      backgroundColor: ColorConstants.primaryColour,
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 80),
         child: Column(
           children: [
-            const SizedBox(height: 40), // Add spacing at the top
+            const SizedBox(height: 10),
             const Text(
               'Hello!',
               style: TextStyle(
@@ -101,12 +101,10 @@ class _RegisterViewState extends State<RegisterView> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 20), // Add spacing below the text
-
-            Image.asset('assets/auth_bg_pic.png'), // Centered background image
             const SizedBox(height: 20),
-            // Centered background image
-            const SizedBox(height: 20), // Add spacing below the image
+            Image.asset('assets/auth_bg_pic.png'),
+            const SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(10),
@@ -115,15 +113,15 @@ class _RegisterViewState extends State<RegisterView> {
                   TextField(
                     controller: _fullName,
                     style: const TextStyle(
-                        color: Colors.white), // Text color is white
+                        color: Colors.white),
                     decoration: const InputDecoration(
                       hintText: 'Enter your full name',
                       labelText: 'Full Name',
                       labelStyle: TextStyle(
-                          color: Colors.white), // Label text color is white
+                          color: Colors.white),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Colors.white), // Set border color to white
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -132,15 +130,15 @@ class _RegisterViewState extends State<RegisterView> {
                     controller: _email,
                     keyboardType: TextInputType.emailAddress,
                     style: const TextStyle(
-                        color: Colors.white), // Text color is white
+                        color: Colors.white),
                     decoration: const InputDecoration(
                       hintText: 'Enter your email',
                       labelText: 'Email',
                       labelStyle: TextStyle(
-                          color: Colors.white), // Label text color is white
+                          color: Colors.white),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Colors.white), // Set border color to white
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -149,15 +147,15 @@ class _RegisterViewState extends State<RegisterView> {
                     controller: _password,
                     obscureText: true,
                     style: const TextStyle(
-                        color: Colors.white), // Text color is white
+                        color: Colors.white),
                     decoration: const InputDecoration(
                       labelText: 'Password',
                       hintText: 'Enter your password',
                       labelStyle: TextStyle(
-                          color: Colors.white), // Label text color is white
+                          color: Colors.white),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Colors.white), // Set border color to white
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -182,11 +180,12 @@ class _RegisterViewState extends State<RegisterView> {
                       onPressed: _handleSignup,
                       child: Text(
                         'Signup',
-                        style: GoogleFonts.roboto(
-                            fontSize: 18,
-                            color: ColorConstants
-                                .primaryColour), // Set text color to black
-                      ),
+                      style: GoogleFonts.roboto(
+                              fontSize: 18,
+                              color: ColorConstants.primaryColour,
+                              fontWeight:
+                                  FontWeight.bold), // Set text color to white
+                        ),
                     ),
                   ),
                   TextButton(
@@ -196,7 +195,8 @@ class _RegisterViewState extends State<RegisterView> {
                         (route) => false,
                       );
                     },
-                    // Set text color to white
+                    style: TextButton.styleFrom(
+                        foregroundColor: ColorConstants.white),
                     child: const Text('Already have an account? Login Here!'),
                   ),
                 ],
@@ -208,3 +208,5 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
+
+

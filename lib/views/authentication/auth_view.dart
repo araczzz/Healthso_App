@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:healthso/constants/colour_constants.dart';
 import 'package:healthso/constants/routes.dart';
@@ -110,7 +112,6 @@ class AuthView extends StatelessWidget {
                     ),
                     // REGISTER BUTTON
                     Container(
-                      // group6412h (171:858)
                       margin: const EdgeInsets.fromLTRB(15, 0, 15.87, 73),
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -120,7 +121,6 @@ class AuthView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            // autogroupkdwoJXb (NKsmA4nodQnjM5d2rqkDwo)
                             margin: const EdgeInsets.fromLTRB(0, 0, 0.98, 16),
                             width: 295.02,
                             height: 42,
@@ -152,7 +152,6 @@ class AuthView extends StatelessWidget {
                           ),
                           //LOGIN BUTTON
                           Container(
-                            // autogroupfkrwLDP (NKsmH4b9TxU5Bm2SQYfkRw)
                             margin: const EdgeInsets.fromLTRB(0.98, 0, 0, 0),
                             width: 295.02,
                             height: 42,

@@ -130,30 +130,33 @@ class _CurrAppointmentState extends State<CurrAppointment> {
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              _buildIconWithText(
-                Icons.people,
-                '${doctor.patientCount}+',
-                'Patients',
-              ),
-              _buildIconWithText(
-                Icons.gif_box,
-                '${doctor.experienceYearsCount}+',
-                'Year Expert',
-              ),
-              _buildIconWithText(
-                Icons.star,
-                doctor.ratings,
-                'Ratings',
-              ),
-              _buildIconWithText(
-                Icons.chat_bubble,
-                '${doctor.reviewsCount}+',
-                'Reviews',
-              ),
-            ],
+          const SizedBox(height: 14),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _buildIconWithText(
+                  Icons.people,
+                  '${doctor.patientCount}+',
+                  'Patients',
+                ),
+                _buildIconWithText(
+                  Icons.gif_box,
+                  '${doctor.experienceYearsCount}+',
+                  'Year Expert',
+                ),
+                _buildIconWithText(
+                  Icons.star,
+                  doctor.ratings,
+                  'Ratings',
+                ),
+                _buildIconWithText(
+                  Icons.chat_bubble,
+                  '${doctor.reviewsCount}+',
+                  'Reviews',
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 16),
           const Padding(
@@ -179,7 +182,7 @@ class _CurrAppointmentState extends State<CurrAppointment> {
               ],
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: ElevatedButton(
@@ -211,9 +214,9 @@ class _CurrAppointmentState extends State<CurrAppointment> {
 
   Widget _buildIconWithText(IconData icon, String topText, String bottomText) {
     return Padding(
-      padding: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(8.0), // Adjust the padding as needed
       child: Container(
-        width: 90,
+        width: 80, // Adjust the width as needed
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -227,31 +230,36 @@ class _CurrAppointmentState extends State<CurrAppointment> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(8), // Adjust padding as needed
           child: Column(
             children: [
               Icon(
                 icon,
                 color: ColorConstants.primaryColour,
+                size: 20, // Adjust the icon size as needed
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 2), // Adjust the spacing as needed
               Text(
                 topText,
                 style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
+                  fontSize: 10, // Adjust the font size as needed
                 ),
               ),
               Text(
                 bottomText,
                 style: const TextStyle(
                   color: Colors.grey,
+                  fontSize: 8, // Adjust the font size as needed
                 ),
               ),
             ],
           ),
         ),
       ),
+
+
     );
   }
 }

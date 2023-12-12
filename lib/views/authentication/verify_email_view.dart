@@ -18,7 +18,7 @@ class VerifyEmailView extends StatefulWidget {
 enum MenuAction { logout }
 
 class _VerifyEmailViewState extends State<VerifyEmailView> {
-//changes
+  //changes
 
   @override
   void initState() {
@@ -122,8 +122,8 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                         return Colors.white; // White for normal state
                       },
                     ),
-                    foregroundColor: MaterialStateProperty.all<Color>(const Color(
-                        0xFF4F2ECC)), // Set the text color to the background color
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF4F2ECC)), // Set the text color to the background color
                   ),
                   onPressed: () async {
                     final user = FirebaseAuth.instance.currentUser;
@@ -134,40 +134,35 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                   ),
                 ),
               ),
-              const SizedBox(height: 0), // Add a SizedBox with zero height
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          bottom: 10, left: 40, right: 40),
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.pressed)) {
-                                return const Color.fromARGB(255, 173, 229, 176);
-                              }
-                              return Colors.white;
-                            },
-                          ),
-                          foregroundColor: MaterialStateProperty.all<Color>(
-                              ColorConstants.primaryColour),
-                          side: MaterialStateProperty.all<BorderSide>(
-                            const BorderSide(
-                              color: Color.fromARGB(255, 254, 255, 255),
-                              width: 2.0,
-                            ),
-                          ), // Add a green border
-                        ),
-                        onPressed: checkEmailVerification,
-                        child: const Text('Check'),
+              const SizedBox(height: 10), // Add a SizedBox with 10 height
+              Container(
+                padding: const EdgeInsets.only(
+                    top: 5, bottom: 5, left: 40, right: 40),
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return const Color.fromARGB(255, 173, 229, 176);
+                        }
+                        return Colors.white;
+                      },
+                    ),
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                        ColorConstants.primaryColour),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      const BorderSide(
+                        color: Color.fromARGB(255, 254, 255, 255),
+                        width: 2.0,
                       ),
                     ),
                   ),
-                ],
+                  onPressed: checkEmailVerification,
+                  child: const Text('Check'),
+                ),
               ),
             ],
           ),

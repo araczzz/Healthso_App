@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthso/views/pages/appointment.dart';
+// import 'package:healthso/views/pages/appointment.dart';
 import 'package:healthso/views/pages/home.dart';
 import 'package:healthso/views/pages/profile.dart';
 import 'package:healthso/views/pages/search.dart';
@@ -17,7 +17,7 @@ class HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     Home(),
     const Search(),
-    const Appointment(),
+    // const Appointment(),
     const Profile(),
   ];
 
@@ -49,11 +49,13 @@ class HomePageState extends State<HomePage> {
             activeIcon: Icon(Icons.search),
             label: "Search",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_outlined),
-            label: "Appointment",
-            activeIcon: Icon(Icons.receipt_outlined),
-          ),
+
+        // BottomNavigationBarItem(
+        //  icon: Icon(Icons.receipt_outlined),
+        //  label: "Appointment",
+        //  activeIcon: Icon(Icons.receipt_outlined),
+        // ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             activeIcon: Icon(Icons.person),
