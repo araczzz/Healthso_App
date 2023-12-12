@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:healthso/views/pages/appointment.dart';
 import 'package:healthso/views/pages/home.dart';
 import 'package:healthso/views/pages/profile.dart';
 import 'package:healthso/views/pages/search.dart';
@@ -17,16 +16,12 @@ class HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     Home(),
     const Search(),
-    // const Appointment(),
     const Profile(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Your App Title"),
-      // ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -40,39 +35,22 @@ class HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined, color: Color.fromARGB(255, 80, 46, 204)),
+            activeIcon: Icon(Icons.home, color: Color.fromARGB(255, 80, 46, 204)),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            activeIcon: Icon(Icons.search),
+            icon: Icon(Icons.search, color: Color.fromARGB(255, 80, 46, 204)),
+            activeIcon: Icon(Icons.search, color: Color.fromARGB(255, 80, 46, 204)),
             label: "Search",
           ),
-
-        // BottomNavigationBarItem(
-        //  icon: Icon(Icons.receipt_outlined),
-        //  label: "Appointment",
-        //  activeIcon: Icon(Icons.receipt_outlined),
-        // ),
-
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
+            icon: Icon(Icons.person_outline, color: Color.fromARGB(255, 80, 46, 204)),
+            activeIcon: Icon(Icons.person, color: Color.fromARGB(255, 80, 46, 204)),
             label: "Profile",
           ),
         ],
       ),
     );
   }
-}
-
-class CustomIcon {
-  final String name;
-  final String icon;
-
-  CustomIcon({
-    required this.name,
-    required this.icon,
-  });
 }
