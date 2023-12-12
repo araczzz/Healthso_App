@@ -134,20 +134,17 @@ class _HomeState extends State<Home> {
                   onPressed: () {},
                   icon: Transform.scale(
                     scale: 2.5,
-                    child: Image.asset(
-                      'assets/icons/ABHA.png',
-                      width: 74,
-                      height: 24,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0), // Add padding here
+                      child: Image.asset(
+                        'assets/icons/ABHA.png',
+                        width: 94,
+                        height: 34,
+                      ),
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Transform.scale(
-                    scale: 1.5,
-                    child: const Icon(Ionicons.person_circle, color: Colors.black),
-                  ),
-                ),
+               
               ],
             ),
           ],
@@ -175,9 +172,7 @@ class _HomeState extends State<Home> {
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5.0),
-                    child
-
-: Text(
+                    child: Text(
                       "200",
                       style: TextStyle(
                         color: Colors.black,

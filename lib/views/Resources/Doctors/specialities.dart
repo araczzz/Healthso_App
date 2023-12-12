@@ -52,8 +52,9 @@ class _SpecialitiesPageState extends State<SpecialitiesPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               Container(
+                height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: const Color.fromARGB(255, 231, 226, 226),
