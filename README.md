@@ -1,7 +1,3 @@
-Certainly! Below is an example README for a Healthso app. You can customize it based on your specific app features, technologies, and other details.
-
----
-
 # Healthso App
 
 **Healthso** is a mobile application designed to provide users with a comprehensive healthcare experience. Whether you're looking for doctors, managing your medical history, or staying informed about health-related topics, Healthso has got you covered.
