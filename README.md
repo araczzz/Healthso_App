@@ -52,6 +52,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Open Source Libraries:** We would like to express our gratitude to the open-source community for the libraries used in this project.
 
----
-
-Feel free to adapt and expand upon this template to better suit your app's specific details and requirements.
